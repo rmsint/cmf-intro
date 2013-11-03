@@ -1,11 +1,4 @@
 acme_main_homepage:
     pattern:  /
     defaults:
-        _controller: FrameworkBundle:Template:template
-        template: 'AcmeMainBundle:Page:home.html.twig'
-
-acme_main_page:
-    pattern:  /page
-    defaults:
-        _controller: FrameworkBundle:Template:template
-        template: 'AcmeMainBundle:Page:page.html.twig'
+        _controller: 'AcmeMainBundle:Default:home'

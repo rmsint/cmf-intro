@@ -92,7 +92,9 @@ sonata_block:
 cmf_routing:
     chain:
         routers_by_id:
+            cmf_routing.dynamic_router: 200
             router.default: 100
-            cmf_routing.dynamic_router: 20
     dynamic:
         enabled: true
+        templates_by_class:
+            Acme\MainBundle\Document\Page: AcmeMainBundle:Page:page.html.twig
