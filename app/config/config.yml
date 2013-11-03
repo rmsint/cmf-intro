@@ -64,3 +64,34 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+# Add Symfony-Cmf
+doctrine_phpcr:
+    session:
+        backend:
+            type: doctrinedbal
+            # connection: default
+        workspace: default
+        username: admin
+        password: admin
+    odm:
+        auto_mapping: true
+
+cmf_core:
+    persistence:
+        phpcr:
+            enabled: true
+    # enable when using the workflow
+#    publish_workflow:
+#        enabled: true
+
+sonata_block:
+    default_contexts: [cms]
+
+cmf_routing:
+    chain:
+        routers_by_id:
+            router.default: 100
+            cmf_routing.dynamic_router: 20
+    dynamic:
+        enabled: true

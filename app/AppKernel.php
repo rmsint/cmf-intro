@@ -17,6 +17,22 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 
+            // Doctrine dependencies
+            new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
+
+            // enable cmf bundles
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+            new Symfony\Cmf\Bundle\CoreBundle\CmfCoreBundle(),
+            new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
+            new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
+            new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+
+            // Dependencies of the CmfMenuBundle
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            // Dependencies of the CmfBlockBundle
+            new Sonata\BlockBundle\SonataBlockBundle(),
+
             // and the sandbox bundle
             new Acme\MainBundle\AcmeMainBundle(),
         );
