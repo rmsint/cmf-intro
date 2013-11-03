@@ -8,13 +8,18 @@
     <parameters>
         <parameter key="acme_main.example.class">Acme\MainBundle\Example</parameter>
     </parameters>
+    -->
 
     <services>
-        <service id="acme_main.example" class="%acme_main.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="acme.main.phpcr.initializer"
+                 class="Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer">
+
+            <argument type="collection">
+                <argument>/cms/content/pages</argument>
+            </argument>
+
+            <tag name="doctrine_phpcr.initializer"/>
         </service>
     </services>
-    -->
+
 </container>
