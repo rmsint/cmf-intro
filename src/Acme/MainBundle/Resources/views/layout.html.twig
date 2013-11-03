@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{% block title %}{{ ""|default('MyCmf')|striptags }}{% endblock %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {% block includes %}
+            {% include 'AcmeMainBundle::stylesheets.html.twig' %}
+
+            <script src="{{ asset('bundles/acmemain/js/modernizr-2.6.2-respond-1.1.0.min.js') }}"></script>
+        {% endblock %}
+
+        {% block top_scripts %}
+            {% include 'AcmeMainBundle::javascripts_top.html.twig' %}
+        {% endblock %}
+
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="{{ asset('bundles/acmemain/ico/favicon.ico') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('bundles/acmemain/ico/apple-touch-icon-144-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('bundles/acmemain/ico/apple-touch-icon-114-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('bundles/acmemain/ico/apple-touch-icon-72-precomposed.png') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('bundles/acmemain/ico/apple-touch-icon-57-precomposed.png') }}">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        {% include 'AcmeMainBundle:Nav:upper-navigation.html.twig' %}
+
+        {% block banner %}
+        {% endblock %}
+
+        <div class="container">
+          {% block content %}
+          {% endblock %}
+        </div> <!-- /container -->
+
+        <footer>
+            <div class="container">
+                <hr>
+                <p>&copy; Company {{ "now"|date('Y') }}</p>
+            </div>
+        </footer>
+
+        {# put javascript at the bottom:
+            the browser waits with rendering the html until all files referenced before that element have been loaded
+        #}
+        {% block bottom_scripts %}
+            {% include 'AcmeMainBundle::javascripts.html.twig' %}
+        {% endblock %}
+    </body>
+</html>
