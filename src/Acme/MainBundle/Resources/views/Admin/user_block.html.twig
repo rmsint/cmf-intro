@@ -1,0 +1,6 @@
+{% extends 'SonataAdminBundle:Core:user_block.html.twig' %}
+
+{% block user_block %}
+    Welcome {{ app.user.username }} {# <a href="{{ path('fos_user_security_logout') }}">Logout</a> #}
+    {{ parent() }}
+{% endblock %}

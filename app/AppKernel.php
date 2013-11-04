@@ -28,12 +28,15 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
+            new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
-            // Dependencies of the CmfMenuBundle
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-
-            // Dependencies of the CmfBlockBundle
+            // Dependencies of the sonata
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
             // and the sandbox bundle
             new Acme\MainBundle\AcmeMainBundle(),

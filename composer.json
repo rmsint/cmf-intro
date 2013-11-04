@@ -22,7 +22,8 @@
         "symfony-cmf/symfony-cmf": "1.0.*",
         "doctrine/data-fixtures": "1.0.0",
         "symfony-cmf/routing-auto-bundle": "1.0.*@dev",
-        "liip/doctrine-cache-bundle": "1.0.*"
+        "liip/doctrine-cache-bundle": "1.0.*",
+        "sonata-project/doctrine-phpcr-admin-bundle": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [
