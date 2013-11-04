@@ -30,13 +30,16 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
 
-            // Dependencies of the sonata
+            // Dependencies of the sonata admin
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Sonata\DoctrinePHPCRAdminBundle\SonataDoctrinePHPCRAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+
+            // Dependencies of ckeditor
+            new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
 
             // and the sandbox bundle
             new Acme\MainBundle\AcmeMainBundle(),
