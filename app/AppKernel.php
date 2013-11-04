@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\MenuBundle\CmfMenuBundle(),
             new Symfony\Cmf\Bundle\ContentBundle\CmfContentBundle(),
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
+            new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
 
             // Dependencies of the CmfMenuBundle
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),

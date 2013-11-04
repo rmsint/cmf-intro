@@ -18,7 +18,6 @@ class LoadPageData implements FixtureInterface
 
         $parent = $dm->find(null, '/cms/content/pages');
         $parentMenu = $this->getMenu($dm);
-        $parentRoute = $this->getRoutes($dm);
 
         $page = new Page();
         $page->setName('home');
@@ -48,11 +47,9 @@ HERE;
             $page->setParent($parent);
             $page->setBody($body);
 
-            $pageRoute = $this->createRoute($parentRoute, $page);
             $menuNode = $this->createMenuNode($parentMenu, $page);
 
             $dm->persist($menuNode);
-            $dm->persist($pageRoute);
             $dm->persist($page);
 
             foreach (array('subpage1', 'subpage2', 'subpage3') as $subPageName) {
@@ -63,10 +60,8 @@ HERE;
                 $subPage->setBody($body);
 
                 $subMenuNode = $this->createMenuNode($menuNode, $subPage);
-                $subRoute = $this->createRoute($pageRoute, $subPage);
 
                 $dm->persist($subMenuNode);
-                $dm->persist($subRoute);
                 $dm->persist($subPage);
             }
         }
@@ -90,12 +85,6 @@ HERE;
         return $menu;
     }
 
-    protected function getRoutes(ObjectManager $dm) {
-        NodeHelper::createPath($dm->getPhpcrSession(), '/cms/routes/page');
-
-        return $dm->find(null, '/cms/routes/page');
-    }
-
     protected function createMenuNode($parent, Page $page) {
         $menuNode = new MenuNode();
         $menuNode->setName($page->getName());
@@ -104,13 +93,5 @@ HERE;
         $menuNode->setContent($page);
 
         return $menuNode;
-    }
-
-    protected function createRoute($parent, Page $page) {
-        $route = new Route();
-        $route->setPosition($parent, $page->getName());
-        $route->setContent($page);
-
-        return $route;
     }
 }
