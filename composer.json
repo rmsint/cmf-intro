@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "symfony-cmf/symfony-cmf": "1.0.*",
         "doctrine/data-fixtures": "1.0.0",
-        "symfony-cmf/routing-auto-bundle": "1.0.*@dev"
+        "symfony-cmf/routing-auto-bundle": "1.0.*@dev",
+        "liip/doctrine-cache-bundle": "1.0.*"
     },
     "scripts": {
         "post-install-cmd": [

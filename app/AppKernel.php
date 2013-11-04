@@ -19,6 +19,7 @@ class AppKernel extends Kernel
 
             // Doctrine dependencies
             new Doctrine\Bundle\PHPCRBundle\DoctrinePHPCRBundle(),
+            new Liip\DoctrineCacheBundle\LiipDoctrineCacheBundle(),
 
             // enable cmf bundles
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),

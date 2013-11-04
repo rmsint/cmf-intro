@@ -72,11 +72,21 @@ doctrine_phpcr:
         backend:
             type: doctrinedbal
             # connection: default
+            caches:
+                meta: liip_doctrine_cache.ns.meta
+                nodes: liip_doctrine_cache.ns.nodes
         workspace: default
         username: admin
         password: admin
     odm:
         auto_mapping: true
+
+liip_doctrine_cache:
+    namespaces:
+        meta:
+            type: file_system
+        nodes:
+            type: file_system
 
 cmf_core:
     persistence:
