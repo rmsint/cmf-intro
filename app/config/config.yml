@@ -93,8 +93,8 @@ cmf_core:
         phpcr:
             enabled: true
     # enable when using the workflow
-#    publish_workflow:
-#        enabled: true
+    publish_workflow:
+        enabled: true
 
 cmf_routing:
     chain:
@@ -103,6 +103,10 @@ cmf_routing:
             router.default: 100
     dynamic:
         enabled: true
+        # disable sonata_admin for routes if not used
+#        persistence:
+#            phpcr:
+#                use_sonata_admin: false
         templates_by_class:
             Acme\MainBundle\Document\Page: AcmeMainBundle:Page:page.html.twig
 
@@ -126,6 +130,16 @@ sonata_admin:
         # default global templates
         user_block: AcmeMainBundle:Admin:user_block.html.twig
         layout:     AcmeMainBundle:Admin:admin_layout.html.twig
+    extensions:
+        cmf_core.admin_extension.publish_workflow.time_period:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishTimePeriodInterface
+        cmf_core.admin_extension.publish_workflow.publishable:
+            implements:
+                - Symfony\Cmf\Bundle\CoreBundle\PublishWorkflow\PublishableInterface
+        cmf_menu.admin_extension.menu_node_referrers:
+            implements:
+                - Symfony\Cmf\Bundle\MenuBundle\Model\MenuNodeReferrersInterface
     dashboard:
         blocks:
             # display a dashboard block

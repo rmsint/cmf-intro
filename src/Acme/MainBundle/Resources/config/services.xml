@@ -7,6 +7,7 @@
     <parameters>
         <parameter key="acme_main.page.class">Acme\MainBundle\Document\Page</parameter>
         <parameter key="acme_main.page_admin.class">Acme\MainBundle\Admin\PageAdmin</parameter>
+        <parameter key="acme_main.security.menu_content_voter.class">Acme\MainBundle\PublishWorkflow\Voter\MenuContentVoter</parameter>
     </parameters>
 
     <services>
@@ -33,6 +34,12 @@
             <call method="setRootPath">
                 <argument>%cmf_content.persistence.phpcr.content_basepath%/pages</argument>
             </call>
+        </service>
+
+        <service id="acme_main.security.menu_content_voter"
+                 class="%acme_main.security.menu_content_voter.class%">
+
+            <tag name="cmf_published_voter" priority="30"/>
         </service>
     </services>
 
