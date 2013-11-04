@@ -9,6 +9,8 @@ use PHPCR\Util\NodeHelper;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\Menu;
 use Symfony\Cmf\Bundle\MenuBundle\Doctrine\Phpcr\MenuNode;
 use Symfony\Cmf\Bundle\RoutingBundle\Doctrine\Phpcr\Route;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\SimpleBlock;
+use Symfony\Cmf\Bundle\BlockBundle\Doctrine\Phpcr\ContainerBlock;
 
 class LoadPageData implements FixtureInterface
 {
@@ -33,6 +35,8 @@ HERE
 
         $dm->persist($menuNode);
         $dm->persist($page);
+
+        $this->addHomepageBlocks($dm, $page);
 
         foreach (array('about', 'contact') as $name) {
             $body = <<<HERE
@@ -69,7 +73,8 @@ HERE;
         $dm->flush();
     }
 
-    protected function getMenu(ObjectManager $dm) {
+    protected function getMenu(ObjectManager $dm)
+    {
         NodeHelper::createPath($dm->getPhpcrSession(), '/cms/menu');
 
         $parent = $dm->find(null, '/cms/menu');
@@ -85,7 +90,8 @@ HERE;
         return $menu;
     }
 
-    protected function createMenuNode($parent, Page $page) {
+    protected function createMenuNode($parent, Page $page)
+    {
         $menuNode = new MenuNode();
         $menuNode->setName($page->getName());
         $menuNode->setLabel($page->getTitle());
@@ -93,5 +99,43 @@ HERE;
         $menuNode->setContent($page);
 
         return $menuNode;
+    }
+
+    protected function addHomepageBlocks(ObjectManager $dm, Page $page)
+    {
+        $bannerBlock = new SimpleBlock();
+        $bannerBlock->setParentDocument($page);
+        $bannerBlock->setName('banner');
+        $bannerBlock->setTitle('Hello, world!');
+        $bannerBlock->setBody(<<<HERE
+<p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+<p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+HERE
+        );
+
+        $dm->persist($bannerBlock);
+
+        $containerBlock = new ContainerBlock();
+        $containerBlock->setParentDocument($page);
+        $containerBlock->setName('additionalInfoBlock');
+        $page->setAdditionalInfoBlock($containerBlock);
+
+        $dm->persist($containerBlock);
+
+        foreach (array('block1', 'block2', 'block3') as $name) {
+            $block = new SimpleBlock();
+            $containerBlock->addChild($block);
+            $block->setParentDocument($containerBlock);
+            $block->setName($name);
+            $block->setTitle('Heading');
+            $block->setBody(<<<HERE
+<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+<p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+HERE
+            );
+            $block->setSetting('template', 'AcmeMainBundle:Block:block_simple.html.twig');
+
+            $dm->persist($block);
+        }
     }
 }
