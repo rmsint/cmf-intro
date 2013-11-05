@@ -41,6 +41,11 @@ class AppKernel extends Kernel
             // Dependencies of ckeditor
             new Trsteel\CkeditorBundle\TrsteelCkeditorBundle(),
 
+            // Dependencies of create.js
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new FOS\RestBundle\FOSRestBundle(),
+            new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
+
             // and the sandbox bundle
             new Acme\MainBundle\AcmeMainBundle(),
         );

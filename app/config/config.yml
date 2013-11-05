@@ -31,7 +31,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [AcmeMainBundle]
+    bundles:        [AcmeMainBundle, CmfCreateBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -109,6 +109,16 @@ cmf_routing:
 #                use_sonata_admin: false
         templates_by_class:
             Acme\MainBundle\Document\Page: AcmeMainBundle:Page:page.html.twig
+
+cmf_create:
+    persistence:
+        phpcr:
+            image: false
+
+fos_rest:
+    view:
+        formats:
+            json: true
 
 sonata_block:
     default_contexts: [cms]

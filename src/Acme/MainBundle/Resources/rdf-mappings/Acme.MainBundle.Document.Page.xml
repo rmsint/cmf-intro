@@ -1,0 +1,12 @@
+<type
+        xmlns:schema="http://schema.org/"
+        typeof="schema:WebPage"
+        >
+    <attribute key="class" value="col-md-9"/>
+    <attribute key="role" value="main"/>
+    <children>
+        <property property="schema:headline" identifier="title" tag-name="h2"/>
+        <property property="schema:text" identifier="body" />
+        <collection property="schema:keywords" identifier="tags" tag-name="ul"/>
+    </children>
+</type>
