@@ -19,3 +19,19 @@ cmf_tree:
 
 create:
     resource: "@CmfCreateBundle/Resources/config/routing/rest.xml"
+
+create_image:
+    resource: "@CmfCreateBundle/Resources/config/routing/image.xml"
+
+cmf_media_file:
+    resource: "@CmfMediaBundle/Resources/config/routing/file.xml"
+
+cmf_media_image:
+    resource: "@CmfMediaBundle/Resources/config/routing/image.xml"
+
+_imagine:
+    resource: .
+    type:     imagine
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"

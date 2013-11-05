@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new Symfony\Cmf\Bundle\BlockBundle\CmfBlockBundle(),
             new Symfony\Cmf\Bundle\RoutingAutoBundle\CmfRoutingAutoBundle(),
             new Symfony\Cmf\Bundle\TreeBrowserBundle\CmfTreeBrowserBundle(),
+            new Symfony\Cmf\Bundle\MediaBundle\CmfMediaBundle(),
 
             // Dependencies of the sonata admin
             new Sonata\jQueryBundle\SonatajQueryBundle(),
@@ -45,6 +46,10 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new FOS\RestBundle\FOSRestBundle(),
             new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
+
+            // Dependencies of media
+            new FM\ElfinderBundle\FMElfinderBundle(),
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             // and the sandbox bundle
             new Acme\MainBundle\AcmeMainBundle(),

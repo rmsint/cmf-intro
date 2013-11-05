@@ -31,7 +31,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        [AcmeMainBundle, CmfCreateBundle]
+    bundles:        [AcmeMainBundle, CmfCreateBundle, FMElfinderBundle]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -110,15 +110,44 @@ cmf_routing:
         templates_by_class:
             Acme\MainBundle\Document\Page: AcmeMainBundle:Page:page.html.twig
 
-cmf_create:
-    persistence:
-        phpcr:
-            image: false
-
 fos_rest:
     view:
         formats:
             json: true
+
+fm_elfinder:
+    locale: "%locale%"
+    editor: ckeditor
+    connector:
+        roots:
+            media:
+                driver: cmf_media.adapter.elfinder.phpcr_driver
+                path: "%cmf_media.persistence.phpcr.media_basepath%"
+                upload_allow: ['all']
+                upload_max_size: 2M
+
+liip_imagine:
+    filter_sets:
+        # default filter to be used with the image preview
+        image_upload_thumbnail:
+            data_loader: cmf_media_doctrine_phpcr
+            quality: 85
+            filters:
+                thumbnail: { size: [100, 100], mode: outbound }
+
+        # default filter to be used for elfinder thumbnails
+        elfinder_thumbnail:
+            data_loader: cmf_media_doctrine_phpcr
+            quality: 85
+            filters:
+                thumbnail: { size: [48, 48], mode: inset }
+
+trsteel_ckeditor:
+    filebrowser_browse_url:
+        route: elfinder
+    filebrowser_image_upload_url:
+        route: cmf_media_image_upload
+        route_parameters: { editor: ckeditor }
 
 sonata_block:
     default_contexts: [cms]
